@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鎵瑰彂鍟嗗煄 - 浼樿川鍟嗗搧鎵瑰彂</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#3b82f6',
+                        accent: '#f59e0b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-store text-primary text-2xl mr-2"></i>
+                    <h1 class="text-xl font-bold text-gray-900">鎵瑰彂鍟嗗煄</h1>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#" class="text-gray-600 hover:text-primary transition-colors">棣栭〉</a>
+                    <a href="#products" class="text-gray-600 hover:text-primary transition-colors">鍏ㄩ儴鍟嗗搧</a>
+                    <a href="#categories" class="text-gray-600 hover:text-primary transition-colors">鍟嗗搧鍒嗙被</a>
+                    <a href="#contact" class="text-gray-600 hover:text-primary transition-colors">鑱旂郴鎴戜滑</a>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <button class="relative p-2 text-gray-600 hover:text-primary">
+                        <i class="fa-solid fa-cart-shopping text-lg"></i>
+                        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                    </button>
+                    <button class="md:hidden p-2 text-gray-600" onclick="toggleMobileMenu()">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 py-3 space-y-2">
+                <a href="#" class="block text-gray-600 hover:text-primary py-2">棣栭〉</a>
+                <a href="#products" class="block text-gray-600 hover:text-primary py-2">鍏ㄩ儴鍟嗗搧</a>
+                <a href="#categories" class="block text-gray-600 hover:text-primary py-2">鍟嗗搧鍒嗙被</a>
+                <a href="#contact" class="block text-gray-600 hover:text-primary py-2">鑱旂郴鎴戜滑</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="bg-gradient-to-r from-primary to-secondary text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">浼樿川鍟嗗搧鎵瑰彂涓績</h2>
+            <p class="text-lg md:text-xl opacity-90 mb-8">娴烽噺鍟嗗搧锛屽巶浠风洿閿€锛屽搧璐ㄤ繚璇?/p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#products" class="btn-primary px-8 py-3 rounded-lg font-semibold text-white hover:opacity-90 transition-opacity">娴忚鍟嗗搧</a>
+                <a href="#contact" class="bg-white/20 backdrop-blur px-8 py-3 rounded-lg font-semibold text-white hover:bg-white/30 transition-colors">鑱旂郴瀹㈡湇</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="categories" class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-2xl font-bold text-center mb-8 text-gray-900">鍟嗗搧鍒嗙被</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <button onclick="filterCategory('all')" class="category-btn active bg-primary text-white p-4 rounded-lg flex flex-col items-center gap-2 hover:opacity-90 transition-opacity">
+                    <i class="fa-solid fa-layer-group text-2xl"></i>
+                    <span>鍏ㄩ儴</span>
+                </button>
+                <button onclick="filterCategory('food')" class="category-btn bg-gray-100 text-gray-700 p-4 rounded-lg flex flex-col items-center gap-2 hover:bg-gray-200 transition-colors">
+                    <i class="fa-solid fa-utensils text-2xl"></i>
+                    <span>椋熷搧楗枡</span>
+                </button>
+                <button onclick="filterCategory('daily')" class="category-btn bg-gray-100 text-gray-700 p-4 rounded-lg flex flex-col items-center gap-2 hover:bg-gray-200 transition-colors">
+                    <i class="fa-solid fa-shower text-2xl"></i>
+                    <span>鏃ョ敤鐧捐揣</span>
+                </button>
+                <button onclick="filterCategory('electronics')" class="category-btn bg-gray-100 text-gray-700 p-4 rounded-lg flex flex-col items-center gap-2 hover:bg-gray-200 transition-colors">
+                    <i class="fa-solid fa-mobile-screen text-2xl"></i>
+                    <span>鏁扮爜鐢靛瓙</span>
+                </button>
+                <button onclick="filterCategory('clothing')" class="category-btn bg-gray-100 text-gray-700 p-4 rounded-lg flex flex-col items-center gap-2 hover:bg-gray-200 transition-colors">
+                    <i class="fa-solid fa-shirt text-2xl"></i>
+                    <span>鏈嶈闉嬪附</span>
+                </button>
+                <button onclick="filterCategory('hardware')" class="category-btn bg-gray-100 text-gray-700 p-4 rounded-lg flex flex-col items-center gap-2 hover:bg-gray-200 transition-colors">
+                    <i class="fa-solid fa-wrench text-2xl"></i>
+                    <span>浜旈噾宸ュ叿</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center mb-8">
+                <h3 class="text-2xl font-bold text-gray-900">鐑棬鍟嗗搧</h3>
+                <div class="flex items-center gap-2">
+                    <span class="text-gray-600">鎺掑簭:</span>
+                    <select id="sort-select" onchange="sortProducts()" class="border rounded-lg px-3 py-1 text-sm">
+                        <option value="default">榛樿</option>
+                        <option value="price-asc">浠锋牸浠庝綆鍒伴珮</option>
+                        <option value="price-desc">浠锋牸浠庨珮鍒颁綆</option>
+                        <option value="sales">閿€閲忎紭鍏?/option>
+                    </select>
+                </div>
+            </div>
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-6">
+                    <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-truck text-primary text-2xl"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-2">蹇€熼厤閫?/h4>
+                    <p class="text-gray-600">鍏ㄥ浗鍖呴偖锛?4灏忔椂鍙戣揣</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-shield-halved text-primary text-2xl"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-2">鍝佽川淇濊瘉</h4>
+                    <p class="text-gray-600">姝ｅ搧淇濋殰锛屼竷澶╂棤鐞嗙敱閫€鎹?/p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-headset text-primary text-2xl"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-2">璐村績鏈嶅姟</h4>
+                    <p class="text-gray-600">7x24灏忔椂鍦ㄧ嚎瀹㈡湇</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-2xl font-bold text-center mb-8 text-gray-900">鑱旂郴鎴戜滑</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-map-marker-alt text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">鍦板潃</h4>
+                                <p class="text-gray-600">骞垮窞甯傜櫧浜戝尯鎵瑰彂甯傚満A鏍?01</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-phone text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">鐢佃瘽</h4>
+                                <p class="text-gray-600">400-888-8888</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-envelope text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">閭</h4>
+                                <p class="text-gray-600">contact@wholesale.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-clock text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">钀ヤ笟鏃堕棿</h4>
+                                <p class="text-gray-600">鍛ㄤ竴鑷冲懆鏃?8:00-20:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h4 class="font-semibold text-gray-900 mb-4">鍦ㄧ嚎鍜ㄨ</h4>
+                    <form id="contact-form" onsubmit="handleContactForm(event)">
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">濮撳悕</label>
+                            <input type="text" required class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">鐢佃瘽</label>
+                            <input type="tel" required class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">鐣欒█鍐呭</label>
+                            <textarea rows="4" required class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none"></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary w-full py-3 rounded-lg font-semibold text-white hover:opacity-90 transition-opacity">鎻愪氦鐣欒█</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fa-solid fa-store text-secondary text-2xl mr-2"></i>
+                        <h4 class="text-lg font-bold">鎵瑰彂鍟嗗煄</h4>
+                    </div>
+                    <p class="text-gray-400 text-sm">涓撲笟鐨勬壒鍙戝钩鍙帮紝涓烘偍鎻愪緵浼樿川鍟嗗搧鍜岃创蹇冩湇鍔°€?/p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">蹇€熼摼鎺?/h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">棣栭〉</a></li>
+                        <li><a href="#products" class="hover:text-white transition-colors">鍟嗗搧鍒楄〃</a></li>
+                        <li><a href="#categories" class="hover:text-white transition-colors">鍟嗗搧鍒嗙被</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">鑱旂郴鎴戜滑</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">瀹㈡埛鏈嶅姟</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">鍞悗鏈嶅姟</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">閰嶉€佽鏄?/a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">鏀粯鏂瑰紡</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">甯歌闂</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">鍏虫敞鎴戜滑</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-gray-800 w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fa-brands fa-weixin"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fa-brands fa-weibo"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fa-brands fa-qq"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>漏 2024 鎵瑰彂鍟嗗煄 鐗堟潈鎵€鏈?/p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
