@@ -37,23 +37,24 @@ function renderProducts() {
     grid.innerHTML = filteredProducts.map(product => `
         <div class="bg-white rounded-xl shadow-sm overflow-hidden card-hover cursor-pointer" onclick="goToProduct(${product.id})">
             <div class="aspect-square bg-gray-100 relative">
-                <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;200&quot; height=&quot;200&quot; viewBox=&quot;0 0 200 200&quot;%3E%3Crect fill=&quot;%23f3f4f6&quot; width=&quot;200&quot; height=&quot;200&quot;/%3E%3Ctext fill=&quot;%239ca3af&quot; font-family=&quot;sans-serif&quot; font-size=&quot;14&quot; x=&quot;50%25&quot; y=&quot;50%25&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;middle&quot;%3E鍟嗗搧鍥剧墖%3C/text%3E%3C/svg%3E'">
+                <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;200&quot; height=&quot;200&quot; viewBox=&quot;0 0 200 200&quot;%3E%3Crect fill=&quot;%23f3f4f6&quot; width=&quot;200&quot; height=&quot;200&quot;/%3E%3Ctext fill=&quot;%239ca3af&quot; font-family=&quot;sans-serif&quot; font-size=&quot;14&quot; x=&quot;50%25&quot; y=&quot;50%25&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;middle&quot;%3E商品图片%3C/text%3E%3C/svg%3E'">
                 <div class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
-                    鎵瑰彂浠?                </div>
+                    批发价
+                </div>
             </div>
             <div class="p-4">
                 <h4 class="font-semibold text-gray-900 mb-2 line-clamp-2">${product.name}</h4>
                 <div class="flex items-baseline gap-2 mb-2">
-                    <span class="text-primary text-xl font-bold">楼${product.price}</span>
-                    <span class="text-gray-400 text-sm line-through">楼${product.originalPrice}</span>
+                    <span class="text-primary text-xl font-bold">¥${product.price}</span>
+                    <span class="text-gray-400 text-sm line-through">¥${product.originalPrice}</span>
                     <span class="text-gray-500 text-sm">/${product.unit}</span>
                 </div>
                 <div class="flex items-center justify-between text-sm text-gray-500">
-                    <span>璧疯閲? ${product.minOrder}${product.unit}</span>
-                    <span>閿€閲? ${product.sales}</span>
+                    <span>起订量: ${product.minOrder}${product.unit}</span>
+                    <span>销量: ${product.sales}</span>
                 </div>
                 <button class="btn-primary w-full mt-3 py-2 rounded-lg text-white text-sm font-semibold hover:opacity-90 transition-opacity">
-                    鏌ョ湅璇︽儏
+                    查看详情
                 </button>
             </div>
         </div>
@@ -66,7 +67,7 @@ function goToProduct(id) {
 
 function handleContactForm(e) {
     e.preventDefault();
-    alert('鎰熻阿鎮ㄧ殑鐣欒█锛佹垜浠細灏藉揩涓庢偍鑱旂郴銆?);
+    alert('感谢您的留言！我们会尽快与您联系。');
     e.target.reset();
 }
 
