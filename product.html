@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鍟嗗搧璇︽儏 - 鎵瑰彂鍟嗗煄</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#3b82f6',
+                        accent: '#f59e0b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-store text-primary text-2xl mr-2"></i>
+                    <h1 class="text-xl font-bold text-gray-900">鎵瑰彂鍟嗗煄</h1>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-primary transition-colors">棣栭〉</a>
+                    <a href="index.html#products" class="text-gray-600 hover:text-primary transition-colors">鍏ㄩ儴鍟嗗搧</a>
+                    <a href="index.html#categories" class="text-gray-600 hover:text-primary transition-colors">鍟嗗搧鍒嗙被</a>
+                    <a href="index.html#contact" class="text-gray-600 hover:text-primary transition-colors">鑱旂郴鎴戜滑</a>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <button class="relative p-2 text-gray-600 hover:text-primary">
+                        <i class="fa-solid fa-cart-shopping text-lg"></i>
+                        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                    </button>
+                    <button class="md:hidden p-2 text-gray-600" onclick="toggleMobileMenu()">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 py-3 space-y-2">
+                <a href="index.html" class="block text-gray-600 hover:text-primary py-2">棣栭〉</a>
+                <a href="index.html#products" class="block text-gray-600 hover:text-primary py-2">鍏ㄩ儴鍟嗗搧</a>
+                <a href="index.html#categories" class="block text-gray-600 hover:text-primary py-2">鍟嗗搧鍒嗙被</a>
+                <a href="index.html#contact" class="block text-gray-600 hover:text-primary py-2">鑱旂郴鎴戜滑</a>
+            </div>
+        </div>
+    </header>
+
+    <nav class="bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center h-10">
+                <a href="index.html" class="text-gray-600 hover:text-primary">棣栭〉</a>
+                <i class="fa-solid fa-chevron-right text-gray-400 mx-2 text-xs"></i>
+                <a href="index.html#products" class="text-gray-600 hover:text-primary">鍟嗗搧鍒楄〃</a>
+                <i class="fa-solid fa-chevron-right text-gray-400 mx-2 text-xs"></i>
+                <span class="text-primary" id="breadcrumb-name">鍟嗗搧璇︽儏</span>
+            </div>
+        </div>
+    </nav>
+
+    <section id="product-detail" class="py-8 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden">
+                    <img id="product-image" src="" alt="鍟嗗搧鍥剧墖" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;400&quot; height=&quot;400&quot; viewBox=&quot;0 0 400 400&quot;%3E%3Crect fill=&quot;%23f3f4f6&quot; width=&quot;400&quot; height=&quot;400&quot;/%3E%3Ctext fill=&quot;%239ca3af&quot; font-family=&quot;sans-serif&quot; font-size=&quot;18&quot; x=&quot;50%25&quot; y=&quot;50%25&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;middle&quot;%3E鍟嗗搧鍥剧墖%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div>
+                    <div class="mb-4">
+                        <span class="bg-red-500 text-white text-xs px-2 py-1 rounded">鎵瑰彂浠?/span>
+                        <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded ml-2" id="product-stock">鏈夎揣</span>
+                    </div>
+                    <h2 id="product-name" class="text-2xl font-bold text-gray-900 mb-4"></h2>
+                    <div class="flex items-baseline gap-3 mb-6">
+                        <span class="text-primary text-3xl font-bold" id="product-price"></span>
+                        <span class="text-gray-400 line-through" id="product-original-price"></span>
+                        <span class="text-gray-500" id="product-unit"></span>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-gray-600">璧疯閲?</span>
+                            <span class="font-semibold text-gray-900" id="product-min-order"></span>
+                        </div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-gray-600">宸插敭:</span>
+                            <span class="font-semibold text-gray-900" id="product-sales"></span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-600">搴撳瓨:</span>
+                            <span class="font-semibold text-gray-900" id="product-stock-count"></span>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <span class="text-gray-600">璐拱鏁伴噺:</span>
+                        <div class="flex items-center gap-4 mt-2">
+                            <div class="flex items-center border rounded-lg">
+                                <button onclick="decreaseQuantity()" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-l-lg">-</button>
+                                <input type="number" id="quantity" value="1" class="w-20 text-center border-x py-2 outline-none">
+                                <button onclick="increaseQuantity()" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-r-lg">+</button>
+                            </div>
+                            <span class="text-gray-500 text-sm">鏈€灏忚捣璁㈤噺: <span id="min-order-hint"></span></span>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <button class="btn-primary flex-1 py-3 rounded-lg font-semibold text-white hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-shopping-cart"></i>
+                            鍔犲叆璐墿杞?                        </button>
+                        <button class="bg-accent flex-1 py-3 rounded-lg font-semibold text-white hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-phone"></i>
+                            绔嬪嵆璇环
+                        </button>
+                    </div>
+                    <div class="flex items-center gap-6 mt-6 text-sm text-gray-500">
+                        <div class="flex items-center gap-1">
+                            <i class="fa-solid fa-truck text-primary"></i>
+                            <span>鍏ㄥ浗鍖呴偖</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <i class="fa-solid fa-shield-halved text-primary"></i>
+                            <span>姝ｅ搧淇濋殰</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <i class="fa-solid fa-rotate-left text-primary"></i>
+                            <span>涓冨ぉ閫€鎹?/span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="flex border-b">
+                    <button class="tab-btn active px-6 py-4 font-semibold text-primary border-b-2 border-primary">鍟嗗搧璇︽儏</button>
+                    <button class="tab-btn px-6 py-4 font-semibold text-gray-600 hover:text-primary">瑙勬牸鍙傛暟</button>
+                    <button class="tab-btn px-6 py-4 font-semibold text-gray-600 hover:text-primary">鍞悗鏈嶅姟</button>
+                </div>
+                <div class="p-6">
+                    <div id="tab-detail" class="tab-content">
+                        <p id="product-description" class="text-gray-700 leading-relaxed"></p>
+                    </div>
+                    <div id="tab-specs" class="tab-content hidden">
+                        <table class="w-full">
+                            <tbody id="specs-table"></tbody>
+                        </table>
+                    </div>
+                    <div id="tab-service" class="tab-content hidden">
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4">
+                                <div class="bg-primary/10 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-truck text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">閰嶉€佹湇鍔?/h4>
+                                    <p class="text-gray-600">鍏ㄥ浗鍖呴偖锛?4灏忔椂鍐呭彂璐э紝鏀寔椤轰赴銆佸渾閫氥€佷腑閫氱瓑蹇€掋€?/p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="bg-primary/10 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-shield-halved text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">姝ｅ搧淇濋殰</h4>
+                                    <p class="text-gray-600">鎵€鏈夊晢鍝佸潎涓烘鍝侊紝鏀寔楠岃揣锛屽亣涓€璧斿崄銆?/p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="bg-primary/10 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-rotate-left text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">閫€鎹㈡斂绛?/h4>
+                                    <p class="text-gray-600">鏀跺埌鍟嗗搧7澶╁唴锛屽鍙戠幇璐ㄩ噺闂锛屽彲鐢宠閫€鎹㈣揣锛岃繍璐圭敱鍗栧鎵挎媴銆?/p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="bg-primary/10 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-headset text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">瀹㈡湇鏀寔</h4>
+                                    <p class="text-gray-600">7x24灏忔椂鍦ㄧ嚎瀹㈡湇锛岄殢鏃惰В绛旀偍鐨勭枒闂€?/p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fa-solid fa-store text-secondary text-2xl mr-2"></i>
+                        <h4 class="text-lg font-bold">鎵瑰彂鍟嗗煄</h4>
+                    </div>
+                    <p class="text-gray-400 text-sm">涓撲笟鐨勬壒鍙戝钩鍙帮紝涓烘偍鎻愪緵浼樿川鍟嗗搧鍜岃创蹇冩湇鍔°€?/p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">蹇€熼摼鎺?/h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="index.html" class="hover:text-white transition-colors">棣栭〉</a></li>
+                        <li><a href="index.html#products" class="hover:text-white transition-colors">鍟嗗搧鍒楄〃</a></li>
+                        <li><a href="index.html#categories" class="hover:text-white transition-colors">鍟嗗搧鍒嗙被</a></li>
+                        <li><a href="index.html#contact" class="hover:text-white transition-colors">鑱旂郴鎴戜滑</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">瀹㈡埛鏈嶅姟</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">鍞悗鏈嶅姟</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">閰嶉€佽鏄?/a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">鏀粯鏂瑰紡</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">甯歌闂</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">鍏虫敞鎴戜滑</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-gray-800 w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fa-brands fa-weixin"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fa-brands fa-weibo"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fa-brands fa-qq"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>漏 2024 鎵瑰彂鍟嗗煄 鐗堟潈鎵€鏈?/p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script>
+        let currentProduct = null;
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function decreaseQuantity() {
+            const input = document.getElementById('quantity');
+            const minOrder = currentProduct ? currentProduct.minOrder : 1;
+            if (parseInt(input.value) > minOrder) {
+                input.value = parseInt(input.value) - 1;
+            }
+        }
+
+        function increaseQuantity() {
+            const input = document.getElementById('quantity');
+            input.value = parseInt(input.value) + 1;
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active', 'text-primary', 'border-b-2', 'border-primary');
+                btn.classList.add('text-gray-600');
+            });
+            event.target.classList.remove('text-gray-600');
+            event.target.classList.add('active', 'text-primary', 'border-b-2', 'border-primary');
+            
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            document.getElementById('tab-' + tabName).classList.remove('hidden');
+        }
+
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const tabName = this.textContent.trim();
+                if (tabName === '鍟嗗搧璇︽儏') switchTab('detail');
+                else if (tabName === '瑙勬牸鍙傛暟') switchTab('specs');
+                else if (tabName === '鍞悗鏈嶅姟') switchTab('service');
+            });
+        });
+
+        function renderProduct(product) {
+            currentProduct = product;
+            document.getElementById('breadcrumb-name').textContent = product.name;
+            document.getElementById('product-image').src = product.image;
+            document.getElementById('product-name').textContent = product.name;
+            document.getElementById('product-price').textContent = '楼' + product.price;
+            document.getElementById('product-original-price').textContent = '楼' + product.originalPrice;
+            document.getElementById('product-unit').textContent = '/' + product.unit;
+            document.getElementById('product-min-order').textContent = product.minOrder + product.unit;
+            document.getElementById('product-sales').textContent = product.sales + '浠?;
+            document.getElementById('product-stock-count').textContent = product.stock + product.unit;
+            document.getElementById('min-order-hint').textContent = product.minOrder + product.unit;
+            document.getElementById('quantity').value = product.minOrder;
+            document.getElementById('product-description').textContent = product.description;
+
+            const stockStatus = document.getElementById('product-stock');
+            if (product.stock > 100) {
+                stockStatus.textContent = '搴撳瓨鍏呰冻';
+                stockStatus.className = 'bg-green-100 text-green-700 text-xs px-2 py-1 rounded ml-2';
+            } else if (product.stock > 10) {
+                stockStatus.textContent = '搴撳瓨绱у紶';
+                stockStatus.className = 'bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded ml-2';
+            } else {
+                stockStatus.textContent = '鍗冲皢鍞絼';
+                stockStatus.className = 'bg-red-100 text-red-700 text-xs px-2 py-1 rounded ml-2';
+            }
+
+            const specsTable = document.getElementById('specs-table');
+            specsTable.innerHTML = product.specifications.map(spec => `
+                <tr>
+                    <td class="px-4 py-3 bg-gray-50 w-1/3 text-gray-600">${spec.name}</td>
+                    <td class="px-4 py-3 text-gray-900">${spec.value}</td>
+                </tr>
+            `).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            
+            if (productId) {
+                const product = getProductById(productId);
+                if (product) {
+                    renderProduct(product);
+                } else {
+                    document.getElementById('product-detail').innerHTML = `
+                        <div class="text-center py-16">
+                            <i class="fa-solid fa-frown text-6xl text-gray-300 mb-4"></i>
+                            <h2 class="text-xl font-bold text-gray-900 mb-2">鍟嗗搧涓嶅瓨鍦?/h2>
+                            <p class="text-gray-600 mb-6">鎮ㄨ闂殑鍟嗗搧鍙兘宸蹭笅鏋舵垨涓嶅瓨鍦?/p>
+                            <a href="index.html" class="btn-primary px-8 py-3 rounded-lg font-semibold text-white">杩斿洖棣栭〉</a>
+                        </div>
+                    `;
+                }
+            } else {
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html>
