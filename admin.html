@@ -285,6 +285,7 @@
 
         function handleImageSelect(event) {
             uploadSelectedImage(event.target.files[0]);
+            event.target.value = '';
         }
 
         function uploadImage() {
@@ -293,6 +294,21 @@
 
         async function uploadSelectedImage(file) {
             if (!file) return;
+
+            if (!GITHUB_TOKEN) {
+                alert('请先登录（输入Token）');
+                return;
+            }
+
+            if (file.size > 5 * 1024 * 1024) {
+                alert('图片太大，请选择小于5MB的图片');
+                return;
+            }
+
+            const uploadBtn = document.querySelector('button[onclick="uploadImage()"]');
+            const originalText = uploadBtn.innerHTML;
+            uploadBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>上传中...';
+            uploadBtn.disabled = true;
 
             const reader = new FileReader();
             reader.onload = async function(e) {
@@ -317,16 +333,31 @@
                     });
                     
                     const data = await response.json();
+                    
                     if (data.content) {
                         const imageUrl = `https://raw.githubusercontent.com/${REPO}/main/${filename}`;
                         document.getElementById('image').value = imageUrl;
                         alert('图片上传成功！');
+                    } else if (data.message) {
+                        alert('上传失败: ' + data.message);
+                    } else {
+                        alert('上传失败，请重试');
                     }
                 } catch (error) {
                     console.error('上传失败:', error);
-                    alert('上传图片失败');
+                    alert('上传失败，请检查网络或Token');
+                } finally {
+                    uploadBtn.innerHTML = originalText;
+                    uploadBtn.disabled = false;
                 }
             };
+            
+            reader.onerror = function() {
+                alert('读取图片失败');
+                uploadBtn.innerHTML = originalText;
+                uploadBtn.disabled = false;
+            };
+            
             reader.readAsDataURL(file);
         }
 
