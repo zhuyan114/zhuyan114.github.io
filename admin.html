@@ -337,33 +337,6 @@
             return new TextDecoder('utf-8').decode(bytes);
         }
 
-        async function updateVersionNumbers(headers) {
-            const version = Date.now();
-            const files = ['index.html', 'product.html', 'order.html'];
-            
-            for (const file of files) {
-                try {
-                    const response = await fetch(`https://api.github.com/repos/${REPO}/contents/${file}`, { headers });
-                    const data = await response.json();
-                    const content = base64ToUtf8(data.content);
-                    const newContent = content.replace(/products\.js\?v=\d+/g, `products.js?v=${version}`);
-                    const base64 = utf8ToBase64(newContent);
-                    
-                    await fetch(`https://api.github.com/repos/${REPO}/contents/${file}`, {
-                        method: 'PUT',
-                        headers,
-                        body: JSON.stringify({
-                            message: `Update version for ${file}`,
-                            content: base64,
-                            sha: data.sha
-                        })
-                    });
-                } catch (e) {
-                    console.error('Failed to update', file, e);
-                }
-            }
-        }
-
         function handleImageSelect(event) {
             uploadSelectedImage(event.target.files[0]);
             event.target.value = '';
@@ -480,7 +453,6 @@
                 });
 
                 if (putResponse.ok) {
-                    await updateVersionNumbers(headers);
                     alert('保存成功！网站已更新\n访问 https://zhuyan114.github.io');
                 } else {
                     const errorData = await putResponse.json();
