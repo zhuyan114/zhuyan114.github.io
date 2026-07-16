@@ -6,30 +6,9 @@
     <title>商品管理 - 河南益臻源</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#3B82F6',
-                        secondary: '#1D4ED8',
-                    }
-                }
-            }
-        }
-    </script>
     <style>
         .btn-primary {
             background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
-        }
-        .btn-primary:hover {
-            opacity: 0.9;
-        }
-        .btn-danger {
-            background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
-        }
-        .btn-danger:hover {
-            opacity: 0.9;
         }
     </style>
 </head>
@@ -37,10 +16,10 @@
     <header class="bg-white shadow-md sticky top-0 z-50">
         <div class="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
             <div class="flex items-center">
-                <i class="fa-solid fa-cog text-primary text-xl mr-2"></i>
+                <i class="fa-solid fa-cog text-blue-500 text-xl mr-2"></i>
                 <h1 class="text-lg font-bold text-gray-900">商品管理</h1>
             </div>
-            <button onclick="saveProducts()" class="btn-primary px-4 py-1.5 rounded-lg text-white font-semibold text-sm flex items-center gap-1">
+            <button id="save-btn" class="btn-primary px-4 py-1.5 rounded-lg text-white font-semibold text-sm flex items-center gap-1">
                 <i class="fa-solid fa-save text-xs"></i>
                 保存更新
             </button>
@@ -50,18 +29,18 @@
     <main class="max-w-4xl mx-auto px-4 py-4">
         <div class="bg-white rounded-xl shadow-sm p-4 mb-4">
             <h2 class="text-base font-semibold text-gray-900 mb-3 flex items-center">
-                <i class="fa-solid fa-plus-circle text-primary mr-2"></i>添加商品
+                <i class="fa-solid fa-plus-circle text-blue-500 mr-2"></i>添加商品
             </h2>
             <form id="product-form" class="space-y-3">
                 <div>
                     <label class="block text-xs font-medium text-gray-700 mb-1">商品名称 <span class="text-red-500">*</span></label>
-                    <input type="text" id="name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="如：农夫山泉矿泉水">
+                    <input type="text" id="name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" placeholder="如：农夫山泉矿泉水">
                 </div>
                 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs font-medium text-gray-700 mb-1">分类 <span class="text-red-500">*</span></label>
-                        <select id="category" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none">
+                        <select id="category" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
                             <option value="food">食品饮料</option>
                             <option value="daily">日用百货</option>
                             <option value="electronics">数码电子</option>
@@ -71,54 +50,54 @@
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-gray-700 mb-1">单位 <span class="text-red-500">*</span></label>
-                        <input type="text" id="unit" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="箱">
+                        <input type="text" id="unit" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" placeholder="箱">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs font-medium text-gray-700 mb-1">批发价 <span class="text-red-500">*</span></label>
-                        <input type="number" id="price" step="0.01" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="12.00">
+                        <input type="number" id="price" step="0.01" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" placeholder="12.00">
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-gray-700 mb-1">原价</label>
-                        <input type="number" id="originalPrice" step="0.01" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="15.00">
+                        <input type="number" id="originalPrice" step="0.01" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" placeholder="15.00">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs font-medium text-gray-700 mb-1">起订量 <span class="text-red-500">*</span></label>
-                        <input type="number" id="minOrder" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="10">
+                        <input type="number" id="minOrder" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" placeholder="10">
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-gray-700 mb-1">库存</label>
-                        <input type="number" id="stock" value="100" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none">
+                        <input type="number" id="stock" value="100" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
                     </div>
                 </div>
 
                 <div>
                     <label class="block text-xs font-medium text-gray-700 mb-1">商品图片</label>
                     <div class="flex gap-2">
-                        <input type="text" id="image" class="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="图片URL或点击上传">
-                        <button type="button" onclick="uploadImage()" class="bg-gray-100 px-3 py-2 rounded-lg text-gray-700 text-sm hover:bg-gray-200 flex items-center gap-1">
+                        <input type="text" id="image" class="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" placeholder="图片URL或点击上传">
+                        <button type="button" id="upload-btn" class="bg-gray-100 px-3 py-2 rounded-lg text-gray-700 text-sm hover:bg-gray-200 flex items-center gap-1">
                             <i class="fa-solid fa-upload"></i>上传
                         </button>
                     </div>
-                    <input type="file" id="image-file" accept="image/*" class="hidden" onchange="handleImageSelect(event)">
+                    <input type="file" id="image-file" accept="image/*" class="hidden">
                 </div>
 
                 <div>
                     <label class="block text-xs font-medium text-gray-700 mb-1">商品描述</label>
-                    <textarea id="description" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="商品详细描述"></textarea>
+                    <textarea id="description" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" placeholder="商品详细描述"></textarea>
                 </div>
 
                 <div>
                     <label class="block text-xs font-medium text-gray-700 mb-1">规格参数（每行一条，格式：名称: 值）</label>
-                    <textarea id="specifications" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="规格: 550ml*24瓶/箱&#10;保质期: 24个月"></textarea>
+                    <textarea id="specifications" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" placeholder="规格: 550ml*24瓶/箱&#10;保质期: 24个月"></textarea>
                 </div>
 
-                <button type="button" onclick="addProduct()" class="btn-primary w-full py-3 rounded-lg font-semibold text-white flex items-center justify-center gap-2">
+                <button type="button" id="add-btn" class="btn-primary w-full py-3 rounded-lg font-semibold text-white flex items-center justify-center gap-2">
                     <i class="fa-solid fa-plus"></i>
                     添加商品
                 </button>
@@ -127,7 +106,7 @@
 
         <div class="bg-white rounded-xl shadow-sm p-4">
             <h2 class="text-base font-semibold text-gray-900 mb-3 flex items-center">
-                <i class="fa-solid fa-list text-primary mr-2"></i>商品列表
+                <i class="fa-solid fa-list text-blue-500 mr-2"></i>商品列表
                 <span class="ml-2 text-xs font-normal text-gray-500">共 <span id="product-count">0</span> 件</span>
             </h2>
             <div id="product-list" class="space-y-2">
@@ -139,14 +118,20 @@
         </div>
     </main>
 
-    <footer class="bg-white border-t mt-6 py-3 text-center text-xs text-gray-400">
-        商品管理系统 - 本地使用
-    </footer>
-
     <script>
         const REPO = 'zhuyan114/zhuyan114.github.io';
         let GITHUB_TOKEN = '';
         let products = [];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('add-btn').addEventListener('click', addProduct);
+            document.getElementById('save-btn').addEventListener('click', saveProducts);
+            document.getElementById('upload-btn').addEventListener('click', function() {
+                document.getElementById('image-file').click();
+            });
+            document.getElementById('image-file').addEventListener('change', handleImageSelect);
+            loadProducts();
+        });
 
         function checkToken() {
             const saved = localStorage.getItem('admin_token');
@@ -178,11 +163,11 @@
                 const match = content.match(/const products = (\[.*?\]);/s);
                 if (match) {
                     products = JSON.parse(match[1]);
-                    renderProductList();
                 }
             } catch (error) {
                 console.error('加载失败:', error);
             }
+            renderProductList();
         }
 
         function renderProductList() {
@@ -219,7 +204,8 @@
         }
 
         function addProduct() {
-            const btn = document.querySelector('button[onclick="addProduct()"]');
+            console.log('addProduct called');
+            const btn = document.getElementById('add-btn');
             const originalText = btn.innerHTML;
             btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 添加中...';
             btn.disabled = true;
@@ -279,7 +265,7 @@
                 alert('商品添加成功！点击"保存更新"即可生效');
             } catch (error) {
                 console.error('添加失败:', error);
-                alert('添加失败，请重试');
+                alert('添加失败: ' + error.message);
             } finally {
                 btn.innerHTML = originalText;
                 btn.disabled = false;
@@ -322,10 +308,6 @@
             event.target.value = '';
         }
 
-        function uploadImage() {
-            document.getElementById('image-file').click();
-        }
-
         async function uploadSelectedImage(file) {
             if (!file) return;
 
@@ -339,7 +321,7 @@
                 return;
             }
 
-            const uploadBtn = document.querySelector('button[onclick="uploadImage()"]');
+            const uploadBtn = document.getElementById('upload-btn');
             const originalText = uploadBtn.innerHTML;
             uploadBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>上传中...';
             uploadBtn.disabled = true;
@@ -401,7 +383,7 @@
                 return;
             }
 
-            const btn = document.querySelector('button[onclick="saveProducts()"]');
+            const btn = document.getElementById('save-btn');
             const originalText = btn.innerHTML;
             btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 保存中...';
             btn.disabled = true;
@@ -440,10 +422,6 @@
                 btn.disabled = false;
             }
         }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            loadProducts();
-        });
     </script>
 </body>
 </html>
