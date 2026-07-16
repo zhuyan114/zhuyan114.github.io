@@ -44,6 +44,25 @@ const products = [
                 "value": "-"
             }
         ]
+    },
+    {
+        "id": 1784202797685,
+        "name": "酒",
+        "category": "food",
+        "price": 12,
+        "originalPrice": 15,
+        "unit": "箱",
+        "minOrder": 10,
+        "sales": 0,
+        "stock": 100,
+        "image": "https://raw.githubusercontent.com/zhuyan114/zhuyan114.github.io/main/images/1784202771064_微信图片_20250507020322.jpg",
+        "description": "",
+        "specifications": [
+            {
+                "name": "规格",
+                "value": "-"
+            }
+        ]
     }
 ];
 
