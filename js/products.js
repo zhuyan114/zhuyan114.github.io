@@ -1,6 +1,25 @@
 const products = [
     {
         "id": 1784197620122,
+        "name": "æé¥¼",
+        "category": "food",
+        "price": 12,
+        "originalPrice": 15,
+        "unit": "ç®±",
+        "minOrder": 10,
+        "sales": 0,
+        "stock": 100,
+        "image": "https://raw.githubusercontent.com/zhuyan114/zhuyan114.github.io/main/images/1784196956879_photomode_21032025_230026.png",
+        "description": "",
+        "specifications": [
+            {
+                "name": "è§æ ¼",
+                "value": "-"
+            }
+        ]
+    },
+    {
+        "id": 1784198416163,
         "name": "月饼",
         "category": "food",
         "price": 12,
