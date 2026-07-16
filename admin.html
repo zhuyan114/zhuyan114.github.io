@@ -464,17 +464,32 @@
                     sha: data.sha
                 };
 
-                const putResponse = await fetch(`https://api.github.com/repos/${REPO}/contents/js/products.js`, {
+                let putResponse = await fetch(`https://api.github.com/repos/${REPO}/contents/js/products.js`, {
                     method: 'PUT',
                     headers,
                     body: JSON.stringify(body)
                 });
+
+                if (putResponse.status === 409) {
+                    console.log('SHA冲突，重新获取并重试...');
+                    const newResponse = await fetch(`https://api.github.com/repos/${REPO}/contents/js/products.js`, { headers });
+                    const newData = await newResponse.json();
+                    body.sha = newData.sha;
+                    putResponse = await fetch(`https://api.github.com/repos/${REPO}/contents/js/products.js`, {
+                        method: 'PUT',
+                        headers,
+                        body: JSON.stringify(body)
+                    });
+                }
+
+                console.log('保存响应:', putResponse.status);
 
                 if (putResponse.ok) {
                     alert('保存成功！网站已更新\n访问 https://zhuyan114.github.io');
                     await loadProducts();
                 } else {
                     const errorData = await putResponse.json();
+                    console.error('保存失败详情:', errorData);
                     let errorMsg = '保存失败！\n';
                     if (errorData.message) {
                         errorMsg += '错误: ' + errorData.message + '\n';
