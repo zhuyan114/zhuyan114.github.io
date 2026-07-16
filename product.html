@@ -261,13 +261,9 @@
     </footer>
 
     <script>
-        fetch('js/products.js', {cache: 'no-store'}).then(r => r.text()).then(code => {
-            try {
-                eval(code);
-            } catch(e) {
-                console.error('Failed to load products:', e);
-            }
-        });
+        var s = document.createElement('script');
+        s.src = 'js/products.js?v=' + Date.now();
+        document.head.appendChild(s);
     </script>
     <script>
         let currentProduct = null;
