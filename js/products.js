@@ -1,34 +1,15 @@
 const products = [
     {
-        "id": 1784197620122,
-        "name": "æé¥¼",
+        "id": 1784198513496,
+        "name": "酒",
         "category": "food",
-        "price": 12,
-        "originalPrice": 15,
-        "unit": "ç®±",
-        "minOrder": 10,
-        "sales": 0,
-        "stock": 100,
-        "image": "https://raw.githubusercontent.com/zhuyan114/zhuyan114.github.io/main/images/1784196956879_photomode_21032025_230026.png",
-        "description": "",
-        "specifications": [
-            {
-                "name": "è§æ ¼",
-                "value": "-"
-            }
-        ]
-    },
-    {
-        "id": 1784198416163,
-        "name": "月饼",
-        "category": "food",
-        "price": 12,
-        "originalPrice": 15,
+        "price": 20,
+        "originalPrice": 10,
         "unit": "箱",
         "minOrder": 10,
         "sales": 0,
         "stock": 100,
-        "image": "https://raw.githubusercontent.com/zhuyan114/zhuyan114.github.io/main/images/1784196956879_photomode_21032025_230026.png",
+        "image": "https://raw.githubusercontent.com/zhuyan114/zhuyan114.github.io/main/images/1784198505989_ENDFIELD_SHARE_1774150119.png",
         "description": "",
         "specifications": [
             {
