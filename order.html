@@ -163,7 +163,15 @@
         </div>
     </footer>
 
-    <script>document.write('<script src="js/products.js?v=' + Date.now() + '"><\/script>')</script>
+    <script>
+        fetch('js/products.js', {cache: 'no-store'}).then(r => r.text()).then(code => {
+            try {
+                eval(code);
+            } catch(e) {
+                console.error('Failed to load products:', e);
+            }
+        });
+    </script>
     <script>
         function toggleMobileMenu() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
