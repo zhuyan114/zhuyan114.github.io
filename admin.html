@@ -173,7 +173,7 @@
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}: ${data.message}`);
                 }
-                const content = atob(data.content);
+                const content = base64ToUtf8(data.content);
                 const match = content.match(/const products = (\[.*?\]);/s);
                 if (match) {
                     products = JSON.parse(match[1]);
@@ -328,6 +328,15 @@
             return btoa(binary);
         }
 
+        function base64ToUtf8(b64) {
+            const binary = atob(b64);
+            const bytes = new Uint8Array(binary.length);
+            for (let i = 0; i < binary.length; i++) {
+                bytes[i] = binary.charCodeAt(i);
+            }
+            return new TextDecoder('utf-8').decode(bytes);
+        }
+
         async function updateVersionNumbers(headers) {
             const version = Date.now();
             const files = ['index.html', 'product.html', 'order.html'];
@@ -336,7 +345,7 @@
                 try {
                     const response = await fetch(`https://api.github.com/repos/${REPO}/contents/${file}`, { headers });
                     const data = await response.json();
-                    const content = atob(data.content);
+                    const content = base64ToUtf8(data.content);
                     const newContent = content.replace(/products\.js\?v=\d+/g, `products.js?v=${version}`);
                     const base64 = utf8ToBase64(newContent);
                     
