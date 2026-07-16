@@ -268,28 +268,20 @@
             submitBtn.textContent = '提交中...';
 
             try {
-                const email = '15937151309@163.com';
-                const formSubmitUrl = `https://formsubmit.co/${email}`;
+                const sendKey = 'SCT380247TUhEeBPRnXGF7wRXEpUH1Z5QL';
+                const serverChanUrl = `https://sctapi.ftqq.com/${sendKey}.send`;
                 
                 let itemsText = '';
                 cart.forEach(item => {
                     itemsText += `- ${item.name}: ${item.quantity}${item.unit} x ¥${item.price} = ¥${(item.price * item.quantity).toFixed(2)}\n`;
                 });
 
-                const formData = new FormData();
-                formData.append('name', name);
-                formData.append('phone', phone);
-                formData.append('address', address);
-                formData.append('remark', remark || '无');
-                formData.append('items', itemsText);
-                formData.append('total', `¥${order.total.toFixed(2)}`);
-                formData.append('time', order.time);
-                formData.append('_subject', '【河南益臻源】新订单通知');
-                formData.append('_template', 'table');
+                const desp = `**收货人：**${name}\n**手机号：**${phone}\n**地址：**${address}\n**备注：**${remark || '无'}\n\n**商品清单：**\n${itemsText}\n**订单总额：**¥${order.total.toFixed(2)}\n**下单时间：**${order.time}`;
 
-                await fetch(formSubmitUrl, {
-                    method: 'POST',
-                    body: formData
+                const url = `${serverChanUrl}?title=【河南益臻源】新订单通知&desp=${encodeURIComponent(desp)}`;
+
+                await fetch(url, {
+                    method: 'GET'
                 });
 
                 alert('订单提交成功！客服会尽快联系您确认订单。');
