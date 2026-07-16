@@ -1,32 +1,5 @@
 const products = [
     {
-        "id": 3,
-        "name": "康师傅方便面",
-        "category": "food",
-        "price": 32,
-        "originalPrice": 40,
-        "unit": "箱",
-        "minOrder": 10,
-        "sales": 4500,
-        "stock": 1000,
-        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=instant%20noodles%20box%20product%20photo%20white%20background&image_size=square",
-        "description": "经典红烧牛肉面，方便快捷",
-        "specifications": [
-            {
-                "name": "规格",
-                "value": "140g*24袋/箱"
-            },
-            {
-                "name": "保质期",
-                "value": "18个月"
-            },
-            {
-                "name": "产地",
-                "value": "天津"
-            }
-        ]
-    },
-    {
         "id": 4,
         "name": "金龙鱼食用油",
         "category": "food",
