@@ -417,16 +417,33 @@
                     sha: data.sha
                 };
 
-                await fetch(`https://api.github.com/repos/${REPO}/contents/js/products.js`, {
+                const putResponse = await fetch(`https://api.github.com/repos/${REPO}/contents/js/products.js`, {
                     method: 'PUT',
                     headers,
                     body: JSON.stringify(body)
                 });
 
-                alert('保存成功！网站已更新\n访问 https://zhuyan114.github.io');
+                if (putResponse.ok) {
+                    alert('保存成功！网站已更新\n访问 https://zhuyan114.github.io');
+                } else {
+                    const errorData = await putResponse.json();
+                    let errorMsg = '保存失败！\n';
+                    if (errorData.message) {
+                        errorMsg += '错误: ' + errorData.message + '\n';
+                    }
+                    if (errorData.documentation_url) {
+                        errorMsg += '详情: ' + errorData.documentation_url;
+                    }
+                    alert(errorMsg);
+                }
             } catch (error) {
                 console.error('保存失败:', error);
-                alert('保存失败，请检查网络');
+                let errorMsg = '保存失败！\n';
+                if (error.message) {
+                    errorMsg += '错误: ' + error.message + '\n';
+                }
+                errorMsg += '\n请检查：\n1. 网络连接是否正常\n2. Token 是否正确\n3. 浏览器控制台查看详细错误';
+                alert(errorMsg);
             } finally {
                 btn.innerHTML = originalText;
                 btn.disabled = false;
