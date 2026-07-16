@@ -79,13 +79,7 @@ function updateCartCount() {
     }
 }
 
-function initApp() {
-    if (typeof products !== 'undefined') {
-        renderProducts();
-        updateCartCount();
-    } else {
-        setTimeout(initApp, 100);
-    }
-}
-
-document.addEventListener('DOMContentLoaded', initApp);
+document.addEventListener('DOMContentLoaded', () => {
+    renderProducts();
+    updateCartCount();
+});
