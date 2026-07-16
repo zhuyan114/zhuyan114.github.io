@@ -128,6 +128,7 @@
         const REPO = 'zhuyan114/zhuyan114.github.io';
         let GITHUB_TOKEN = '';
         let products = [];
+        let loadSuccess = false;
 
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('add-btn').addEventListener('click', addProduct);
@@ -176,10 +177,12 @@
                 const match = content.match(/const products = (\[.*?\]);/s);
                 if (match) {
                     products = JSON.parse(match[1]);
+                    loadSuccess = true;
                 }
             } catch (error) {
                 console.error('加载失败:', error);
                 alert('加载商品失败！请检查 Token 是否正确，或重新登录。\n\n错误信息: ' + error.message);
+                loadSuccess = false;
             }
             renderProductList();
         }
@@ -427,6 +430,13 @@
             btn.disabled = true;
 
             try {
+                if (!loadSuccess) {
+                    alert('错误：商品数据加载失败！请刷新页面重新登录后再试。');
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    return;
+                }
+                
                 if (products.length === 0) {
                     alert('错误：没有商品数据！请刷新页面重新登录后再试。');
                     btn.innerHTML = originalText;
