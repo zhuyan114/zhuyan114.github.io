@@ -71,6 +71,15 @@ function handleContactForm(e) {
     e.target.reset();
 }
 
+function updateCartCount() {
+    const count = getCartItemCount();
+    const cartCount = document.getElementById('cart-count');
+    if (cartCount) {
+        cartCount.textContent = count;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
+    updateCartCount();
 });
