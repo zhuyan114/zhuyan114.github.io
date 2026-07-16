@@ -153,9 +153,8 @@
             const token = prompt('请输入 GitHub Token：');
             if (token) {
                 GITHUB_TOKEN = token;
-                if (confirm('是否保存 Token（下次自动登录）？')) {
-                    localStorage.setItem('admin_token', token);
-                }
+                localStorage.setItem('admin_token', token);
+                alert('Token 已保存，下次打开页面会自动登录');
                 return true;
             }
             return false;
