@@ -280,10 +280,14 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
     <script>
         var s = document.createElement('script');
         s.src = 'js/products.js?v=' + Date.now();
+        s.onload = function() {
+            var m = document.createElement('script');
+            m.src = 'js/main.js';
+            document.head.appendChild(m);
+        };
         document.head.appendChild(s);
     </script>
 </body>
