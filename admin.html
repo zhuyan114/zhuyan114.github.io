@@ -303,6 +303,16 @@
             return `https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=${prompt}&image_size=square`;
         }
 
+        function utf8ToBase64(str) {
+            const encoder = new TextEncoder();
+            const bytes = encoder.encode(str);
+            let binary = '';
+            for (let i = 0; i < bytes.length; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            return btoa(binary);
+        }
+
         function handleImageSelect(event) {
             uploadSelectedImage(event.target.files[0]);
             event.target.value = '';
@@ -399,7 +409,7 @@
                 
                 const code = `const products = ${JSON.stringify(products, null, 4)};\n\nfunction getProductById(id) {\n    return products.find(p => p.id === parseInt(id));\n}\n\nfunction getProductsByCategory(category) {\n    if (category === 'all') return products;\n    return products.filter(p => p.category === category);\n}\n\nconst CART_KEY = 'wholesale_cart';\n\nfunction getCart() {\n    try {\n        const cart = localStorage.getItem(CART_KEY);\n        return cart ? JSON.parse(cart) : [];\n    } catch {\n        return [];\n    }\n}\n\nfunction saveCart(cart) {\n    localStorage.setItem(CART_KEY, JSON.stringify(cart));\n}\n\nfunction addToCart(productId, quantity) {\n    const cart = getCart();\n    const product = getProductById(productId);\n    if (!product) return false;\n    \n    const existingItem = cart.find(item => item.id === productId);\n    if (existingItem) {\n        existingItem.quantity += quantity;\n    } else {\n        cart.push({\n            id: product.id,\n            name: product.name,\n            price: product.price,\n            unit: product.unit,\n            minOrder: product.minOrder,\n            image: product.image,\n            quantity: quantity\n        });\n    }\n    saveCart(cart);\n    return true;\n}\n\nfunction updateCartItem(productId, quantity) {\n    const cart = getCart();\n    const item = cart.find(item => item.id === productId);\n    if (item) {\n        if (quantity <= 0) {\n            removeFromCart(productId);\n        } else {\n            item.quantity = quantity;\n            saveCart(cart);\n        }\n    }\n}\n\nfunction removeFromCart(productId) {\n    const cart = getCart();\n    const filteredCart = cart.filter(item => item.id !== productId);\n    saveCart(filteredCart);\n}\n\nfunction clearCart() {\n    localStorage.removeItem(CART_KEY);\n}\n\nfunction getCartItemCount() {\n    const cart = getCart();\n    return cart.reduce((total, item) => total + item.quantity, 0);\n}\n\nfunction getCartTotal() {\n    const cart = getCart();\n    return cart.reduce((total, item) => total + (item.price * item.quantity), 0);\n}\n\nfunction getCartItems() {\n    const cart = getCart();\n    return cart;\n}\n`;
 
-                const base64 = btoa(code);
+                const base64 = utf8ToBase64(code);
                 
                 const body = {
                     message: 'Update products',
