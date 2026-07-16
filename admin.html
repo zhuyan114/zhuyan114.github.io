@@ -219,37 +219,71 @@
         }
 
         function addProduct() {
-            const form = document.getElementById('product-form');
-            if (!form.checkValidity()) {
-                form.reportValidity();
-                return;
+            const btn = document.querySelector('button[onclick="addProduct()"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 添加中...';
+            btn.disabled = true;
+
+            try {
+                const name = document.getElementById('name').value.trim();
+                const category = document.getElementById('category').value;
+                const price = parseFloat(document.getElementById('price').value);
+                const unit = document.getElementById('unit').value.trim();
+                const minOrder = parseInt(document.getElementById('minOrder').value);
+
+                if (!name) {
+                    alert('请输入商品名称');
+                    return;
+                }
+                if (!category) {
+                    alert('请选择分类');
+                    return;
+                }
+                if (isNaN(price) || price <= 0) {
+                    alert('请输入有效的批发价');
+                    return;
+                }
+                if (!unit) {
+                    alert('请输入单位');
+                    return;
+                }
+                if (isNaN(minOrder) || minOrder <= 0) {
+                    alert('请输入有效的起订量');
+                    return;
+                }
+
+                const specsText = document.getElementById('specifications').value;
+                const specs = specsText.split('\n').filter(line => line.trim()).map(line => {
+                    const [name, value] = line.split(':').map(s => s.trim());
+                    return { name: name || '规格', value: value || '' };
+                });
+
+                const newProduct = {
+                    id: Date.now(),
+                    name: name,
+                    category: category,
+                    price: price,
+                    originalPrice: parseFloat(document.getElementById('originalPrice').value) || 0,
+                    unit: unit,
+                    minOrder: minOrder,
+                    sales: 0,
+                    stock: parseInt(document.getElementById('stock').value) || 100,
+                    image: document.getElementById('image').value || generateImageUrl(name),
+                    description: document.getElementById('description').value,
+                    specifications: specs.length > 0 ? specs : [{ name: '规格', value: '-' }]
+                };
+
+                products.push(newProduct);
+                renderProductList();
+                document.getElementById('product-form').reset();
+                alert('商品添加成功！点击"保存更新"即可生效');
+            } catch (error) {
+                console.error('添加失败:', error);
+                alert('添加失败，请重试');
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
             }
-
-            const specsText = document.getElementById('specifications').value;
-            const specs = specsText.split('\n').filter(line => line.trim()).map(line => {
-                const [name, value] = line.split(':').map(s => s.trim());
-                return { name: name || '规格', value: value || '' };
-            });
-
-            const newProduct = {
-                id: Date.now(),
-                name: document.getElementById('name').value,
-                category: document.getElementById('category').value,
-                price: parseFloat(document.getElementById('price').value),
-                originalPrice: parseFloat(document.getElementById('originalPrice').value) || 0,
-                unit: document.getElementById('unit').value,
-                minOrder: parseInt(document.getElementById('minOrder').value),
-                sales: parseInt(document.getElementById('sales').value) || 0,
-                stock: parseInt(document.getElementById('stock').value) || 100,
-                image: document.getElementById('image').value || generateImageUrl(document.getElementById('name').value),
-                description: document.getElementById('description').value,
-                specifications: specs.length > 0 ? specs : [{ name: '规格', value: '-' }]
-            };
-
-            products.push(newProduct);
-            renderProductList();
-            form.reset();
-            alert('商品添加成功！点击"保存更新"即可生效');
         }
 
         function editProduct(index) {
