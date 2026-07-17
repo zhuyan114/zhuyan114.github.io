@@ -1,4 +1,4 @@
-const products = [
+var products = [
     {
         "id": 1,
         "name": "农夫山泉矿泉水",
