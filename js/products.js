@@ -1,32 +1,5 @@
 const products = [
     {
-        "id": 1,
-        "name": "农夫山泉矿泉水",
-        "category": "food",
-        "price": 12,
-        "originalPrice": 15,
-        "unit": "箱",
-        "minOrder": 10,
-        "sales": 1250,
-        "stock": 500,
-        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=mineral%20water%20bottles%20pack%20product%20photo%20white%20background&image_size=square",
-        "description": "优质天然矿泉水，源自长白山天然水源",
-        "specifications": [
-            {
-                "name": "规格",
-                "value": "550ml*24瓶/箱"
-            },
-            {
-                "name": "保质期",
-                "value": "24个月"
-            },
-            {
-                "name": "产地",
-                "value": "浙江杭州"
-            }
-        ]
-    },
-    {
         "id": 3,
         "name": "康师傅方便面",
         "category": "food",
