@@ -485,6 +485,11 @@
                 console.log('保存响应:', putResponse.status);
 
                 if (putResponse.ok) {
+                    const putData = await putResponse.json();
+                    if (putData.content && putData.content.sha) {
+                        currentSHA = putData.content.sha;
+                        console.log('SHA已更新:', currentSHA);
+                    }
                     alert('保存成功！网站已更新\n访问 https://zhuyan114.github.io');
                     await loadProducts();
                 } else {
