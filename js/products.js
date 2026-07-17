@@ -1,32 +1,5 @@
 var products = [
     {
-        "id": 4,
-        "name": "金龙鱼食用油",
-        "category": "food",
-        "price": 68,
-        "originalPrice": 85,
-        "unit": "桶",
-        "minOrder": 5,
-        "sales": 890,
-        "stock": 200,
-        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cooking%20oil%20bottle%20product%20photo%20white%20background&image_size=square",
-        "description": "非转基因大豆油，健康烹饪",
-        "specifications": [
-            {
-                "name": "规格",
-                "value": "5L/桶"
-            },
-            {
-                "name": "保质期",
-                "value": "18个月"
-            },
-            {
-                "name": "产地",
-                "value": "山东"
-            }
-        ]
-    },
-    {
         "id": 5,
         "name": "月饼",
         "category": "food",
