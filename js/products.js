@@ -1,10 +1,10 @@
 var products = [
     {
-        "id": 1784260390626,
+        "id": 1784260567773,
         "name": "椒麻鸡",
         "category": "gift",
-        "price": 12,
-        "originalPrice": 15,
+        "price": 60,
+        "originalPrice": 65,
         "unit": "箱",
         "minOrder": 10,
         "sales": 0,
