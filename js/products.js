@@ -17,6 +17,44 @@ var products = [
                 "value": "-"
             }
         ]
+    },
+    {
+        "id": 1784254958159,
+        "name": "手撕牛肉",
+        "category": "gift",
+        "price": 12,
+        "originalPrice": 15,
+        "unit": "箱",
+        "minOrder": 10,
+        "sales": 0,
+        "stock": 100,
+        "image": "https://raw.githubusercontent.com/zhuyan114/zhuyan114.github.io/main/images/1784254920518_微信图片_20260717092009_460_44.jpg",
+        "description": "",
+        "specifications": [
+            {
+                "name": "规格",
+                "value": "-"
+            }
+        ]
+    },
+    {
+        "id": 1784255022016,
+        "name": "爆汁肉肠",
+        "category": "gift",
+        "price": 12,
+        "originalPrice": 15,
+        "unit": "箱",
+        "minOrder": 10,
+        "sales": 0,
+        "stock": 100,
+        "image": "https://raw.githubusercontent.com/zhuyan114/zhuyan114.github.io/main/images/1784254972538_微信图片_20260717092014_461_44.jpg",
+        "description": "",
+        "specifications": [
+            {
+                "name": "规格",
+                "value": "-"
+            }
+        ]
     }
 ];
 
