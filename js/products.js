@@ -19,11 +19,11 @@ var products = [
         ]
     },
     {
-        "id": 1784261074397,
+        "id": 1784261488305,
         "name": "手撕牛肉",
         "category": "gift",
-        "price": 12,
-        "originalPrice": 15,
+        "price": 108,
+        "originalPrice": 128,
         "unit": "箱",
         "minOrder": 10,
         "sales": 0,
