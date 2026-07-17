@@ -12,9 +12,18 @@ var products = [
         "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=mineral%20water%20bottles%20pack%20product%20photo%20white%20background&image_size=square",
         "description": "优质天然矿泉水，源自长白山天然水源",
         "specifications": [
-            {"name": "规格", "value": "550ml*24瓶/箱"},
-            {"name": "保质期", "value": "24个月"},
-            {"name": "产地", "value": "浙江杭州"}
+            {
+                "name": "规格",
+                "value": "550ml*24瓶/箱"
+            },
+            {
+                "name": "保质期",
+                "value": "24个月"
+            },
+            {
+                "name": "产地",
+                "value": "浙江杭州"
+            }
         ]
     },
     {
@@ -30,9 +39,18 @@ var products = [
         "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=coca%20cola%20cans%20pack%20product%20photo%20white%20background&image_size=square",
         "description": "经典碳酸饮料，畅爽口感",
         "specifications": [
-            {"name": "规格", "value": "330ml*24罐/箱"},
-            {"name": "保质期", "value": "12个月"},
-            {"name": "产地", "value": "上海"}
+            {
+                "name": "规格",
+                "value": "330ml*24罐/箱"
+            },
+            {
+                "name": "保质期",
+                "value": "12个月"
+            },
+            {
+                "name": "产地",
+                "value": "上海"
+            }
         ]
     },
     {
@@ -48,9 +66,18 @@ var products = [
         "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=instant%20noodles%20box%20product%20photo%20white%20background&image_size=square",
         "description": "经典红烧牛肉面，方便快捷",
         "specifications": [
-            {"name": "规格", "value": "140g*24袋/箱"},
-            {"name": "保质期", "value": "18个月"},
-            {"name": "产地", "value": "天津"}
+            {
+                "name": "规格",
+                "value": "140g*24袋/箱"
+            },
+            {
+                "name": "保质期",
+                "value": "18个月"
+            },
+            {
+                "name": "产地",
+                "value": "天津"
+            }
         ]
     },
     {
@@ -66,9 +93,18 @@ var products = [
         "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cooking%20oil%20bottle%20product%20photo%20white%20background&image_size=square",
         "description": "非转基因大豆油，健康烹饪",
         "specifications": [
-            {"name": "规格", "value": "5L/桶"},
-            {"name": "保质期", "value": "18个月"},
-            {"name": "产地", "value": "山东"}
+            {
+                "name": "规格",
+                "value": "5L/桶"
+            },
+            {
+                "name": "保质期",
+                "value": "18个月"
+            },
+            {
+                "name": "产地",
+                "value": "山东"
+            }
         ]
     },
     {
@@ -84,7 +120,10 @@ var products = [
         "image": "https://raw.githubusercontent.com/zhuyan114/zhuyan114.github.io/main/images/1784196956879_photomode_21032025_230026.png",
         "description": "",
         "specifications": [
-            {"name": "规格", "value": "-"}
+            {
+                "name": "规格",
+                "value": "-"
+            }
         ]
     }
 ];
