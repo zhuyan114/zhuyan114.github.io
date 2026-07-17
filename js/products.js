@@ -1,53 +1,42 @@
 var products = [
     {
-        "id": 1784254851258,
-        "name": "椒麻鸡",
+        "id": 4,
+        "name": "金龙鱼食用油",
         "category": "gift",
-        "price": 12,
-        "originalPrice": 15,
-        "unit": "箱",
-        "minOrder": 10,
-        "sales": 0,
-        "stock": 100,
-        "image": "https://raw.githubusercontent.com/zhuyan114/zhuyan114.github.io/main/images/1784254832009_微信图片_20260717092004_459_44.jpg",
-        "description": "",
+        "price": 68,
+        "originalPrice": 85,
+        "unit": "桶",
+        "minOrder": 5,
+        "sales": 890,
+        "stock": 200,
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cooking%20oil%20bottle%20product%20photo%20white%20background&image_size=square",
+        "description": "非转基因大豆油，健康烹饪",
         "specifications": [
             {
                 "name": "规格",
-                "value": "-"
+                "value": "5L/桶"
+            },
+            {
+                "name": "保质期",
+                "value": "18个月"
+            },
+            {
+                "name": "产地",
+                "value": "山东"
             }
         ]
     },
     {
-        "id": 1784254958159,
-        "name": "手撕牛肉",
-        "category": "gift",
+        "id": 5,
+        "name": "月饼",
+        "category": "festival",
         "price": 12,
         "originalPrice": 15,
         "unit": "箱",
         "minOrder": 10,
         "sales": 0,
         "stock": 100,
-        "image": "https://raw.githubusercontent.com/zhuyan114/zhuyan114.github.io/main/images/1784254920518_微信图片_20260717092009_460_44.jpg",
-        "description": "",
-        "specifications": [
-            {
-                "name": "规格",
-                "value": "-"
-            }
-        ]
-    },
-    {
-        "id": 1784255022016,
-        "name": "爆汁肉肠",
-        "category": "gift",
-        "price": 12,
-        "originalPrice": 15,
-        "unit": "箱",
-        "minOrder": 10,
-        "sales": 0,
-        "stock": 100,
-        "image": "https://raw.githubusercontent.com/zhuyan114/zhuyan114.github.io/main/images/1784254972538_微信图片_20260717092014_461_44.jpg",
+        "image": "https://raw.githubusercontent.com/zhuyan114/zhuyan114.github.io/main/images/1784196956879_photomode_21032025_230026.png",
         "description": "",
         "specifications": [
             {
