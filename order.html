@@ -163,7 +163,7 @@
         </div>
     </footer>
 
-    <script>document.write('<script src="js/products.js?v=' + Date.now() + '"><\/script>')</script>
+    <script src="js/products.js"></script>
     <script>
         function toggleMobileMenu() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
@@ -298,6 +298,23 @@
             updateCartCount();
             renderCart();
         });
+    </script>
+    <script>
+        (async function checkVersion() {
+            try {
+                const response = await fetch('version.json?v=' + Date.now());
+                const data = await response.json();
+                const currentVersion = localStorage.getItem('product_version');
+                if (data.version !== parseInt(currentVersion)) {
+                    localStorage.setItem('product_version', data.version);
+                    const s = document.createElement('script');
+                    s.src = 'js/products.js?v=' + data.version;
+                    document.head.appendChild(s);
+                }
+            } catch (e) {
+                console.log('版本检查失败:', e);
+            }
+        })();
     </script>
 </body>
 </html>
