@@ -490,6 +490,7 @@
                         currentSHA = putData.content.sha;
                         console.log('SHA已更新:', currentSHA);
                     }
+                    await incrementVersion();
                     alert('保存成功！网站已更新\n访问 https://zhuyan114.github.io');
                     await loadProducts();
                 } else {
@@ -515,6 +516,32 @@
             } finally {
                 btn.innerHTML = originalText;
                 btn.disabled = false;
+            }
+        }
+
+        async function incrementVersion() {
+            const headers = {
+                Authorization: `token ${GITHUB_TOKEN}`,
+                'Content-Type': 'application/json'
+            };
+            try {
+                const response = await fetch(`https://api.github.com/repos/${REPO}/contents/version.json`, { headers });
+                const data = await response.json();
+                const content = JSON.parse(base64ToUtf8(data.content));
+                content.version += 1;
+                const body = {
+                    message: 'Increment version',
+                    content: utf8ToBase64(JSON.stringify(content, null, 2)),
+                    sha: data.sha
+                };
+                await fetch(`https://api.github.com/repos/${REPO}/contents/version.json`, {
+                    method: 'PUT',
+                    headers,
+                    body: JSON.stringify(body)
+                });
+                console.log('版本号已更新:', content.version);
+            } catch (error) {
+                console.error('更新版本号失败:', error);
             }
         }
     </script>
