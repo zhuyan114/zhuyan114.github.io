@@ -290,21 +290,15 @@
                 const currentVersion = localStorage.getItem('product_version');
                 if (data.version !== parseInt(currentVersion)) {
                     localStorage.setItem('product_version', data.version);
-                    const s = document.createElement('script');
-                    s.src = 'js/products.js?v=' + data.version;
-                    s.onload = function() {
-                        try {
-                            if (typeof renderProducts === 'function') {
-                                renderProducts();
-                            }
-                        } catch(e) {
-                            console.log('重新渲染失败:', e);
+                    const prodResponse = await fetch('https://raw.githubusercontent.com/zhuyan114/zhuyan114.github.io/main/js/products.js', {cache: 'no-store'});
+                    const prodText = await prodResponse.text();
+                    const match = prodText.match(/var products = (\[.*?\]);/s);
+                    if (match) {
+                        window.products = JSON.parse(match[1]);
+                        if (typeof renderProducts === 'function') {
+                            renderProducts();
                         }
-                    };
-                    s.onerror = function() {
-                        console.log('加载新版本失败');
-                    };
-                    document.head.appendChild(s);
+                    }
                 }
             } catch (e) {
                 console.log('版本检查失败:', e);
